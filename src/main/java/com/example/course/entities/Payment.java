@@ -11,16 +11,20 @@ import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_payment")
-public class Payment implements Serializable{
+public class Payment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant moment;
-	
+
+	@JsonIgnore
 	@OneToOne
 	@MapsId
 	private Order order;
@@ -75,6 +79,5 @@ public class Payment implements Serializable{
 		Payment other = (Payment) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }
